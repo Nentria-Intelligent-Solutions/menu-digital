@@ -1,0 +1,5 @@
+# Imagen de campaña
+
+Herramienta: imagegen integrada. Archivo final: `dist/assets/pastor-hero.webp`.
+
+Use case: ads-marketing. Asset type: premium Mexican taqueria website hero photograph. Create an extremely appetizing photorealistic editorial advertising photograph of three authentic Mexican tacos al pastor, charred juicy thinly sliced red-orange pork, tiny golden pineapple cubes, chopped white onion, fresh cilantro on small soft corn tortillas. A dynamic explosion of a few cilantro leaves, pineapple pieces, tiny onion cubes and drops of red salsa suspended above the tacos, steam and subtle orange embers. Tacos occupy center and lower half, photographed very close with shallow depth of field, moody cinematic warm side light, crispy textures, dark nearly black charcoal background with subtle warm orange glow. Landscape 3:2 composition, no text, no logos, no watermark, no hands, no cutlery. Food is the star, not Halloween decorations. High-end food campaign, believable delicious portions and natural textures. Final image must be saved so it can be used as website asset.

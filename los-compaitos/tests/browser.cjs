@@ -1,0 +1,75 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const assert=require('node:assert/strict');
+const path=require('node:path');
+(async()=>{
+ const browser=await chromium.launch({channel:'chrome',headless:true});
+ try {
+  const page=await browser.newPage({viewport:{width:1440,height:1000},reducedMotion:'reduce'});
+  const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  await page.goto('http://127.0.0.1:4173');await page.evaluate(()=>document.fonts.ready);
+  assert.equal(await page.locator('.branch-card').count(),3);assert.ok(await page.locator('.header .brand-logo').evaluate(el=>el.complete&&el.naturalWidth>0));
+  assert.ok(await page.locator('.hero-food').evaluate(el=>el.complete&&el.naturalWidth>0));
+  await page.screenshot({path:path.join(__dirname,'../qa/home-desktop.png'),fullPage:true});
+  for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`home overflow ${width}`);}
+  await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(__dirname,'../qa/home-mobile.png'),fullPage:true});
+  await page.selectOption('#theme-select','navidad');assert.equal(await page.locator('html').getAttribute('data-theme'),'navidad');
+  await page.goto('http://127.0.0.1:4173/pedidos.html?sucursal=independencia');
+  assert.equal(await page.locator('html').getAttribute('data-theme'),'navidad');assert.equal(await page.locator('#branch-select').inputValue(),'independencia');
+  assert.equal(await page.locator('.menu-item').count(),53);
+  await page.locator('#menu-search').fill('arabe');assert.equal(await page.locator('.menu-item').count(),5);
+  await page.locator('#menu-search').fill('noexiste');assert.equal(await page.locator('#menu-empty').isVisible(),true);
+  await page.locator('#clear-search').click();
+  await page.locator('[data-category="Especialidades"]').click();assert.equal(await page.locator('.menu-item').count(),6);
+  await page.locator('[data-category="Todo"]').click();
+  await page.locator('[data-add="p1"]').click();await page.locator('[data-add="p1"]').click();await page.locator('[data-add="p3"]').click();
+  assert.equal(await page.locator('#cart-count').textContent(),'3');assert.equal(await page.locator('#cart-bar-total').textContent(),'$220');
+  await page.reload();assert.equal(await page.locator('#cart-count').textContent(),'3');
+  await page.locator('#open-cart').click();await page.locator('[data-quantity="p1"][data-delta="-1"]').click();assert.equal(await page.locator('#cart-total').textContent(),'$140');
+  await page.selectOption('#order-branch','guillermo-valle');await page.locator('#customer-name').fill('Cliente de prueba');await page.locator('#order-notes').fill('Sin cebolla & salsa aparte');
+  await page.evaluate(()=>{window.open=url=>{window.__whatsapp=url;return {opener:null};};});
+  await page.locator('#send-order').click();
+  const url=await page.evaluate(()=>window.__whatsapp);assert.equal(new URL(url).pathname,'/522461187019');
+  const msg=new URL(url).searchParams.get('text');assert.match(msg,/Guillermo Valle/);assert.match(msg,/Total de productos: \$140 MXN/);assert.match(msg,/1 × Orden de tacos al pastor/);assert.match(msg,/Sin cebolla & salsa aparte/);
+  await page.selectOption('#order-method','delivery');
+  assert.equal(await page.locator('#cart-total').textContent(),'$160');
+  assert.equal(await page.locator('#cart-shipping').textContent(),'$20');
+  await page.evaluate(()=>{window.__whatsapp=null;});
+  await page.locator('#send-order').click();assert.equal(await page.evaluate(()=>window.__whatsapp),null);
+  await page.locator('#order-address').fill('Calle Prueba 10, Centro');await page.locator('#send-order').click();
+  const deliveryMsg=new URL(await page.evaluate(()=>window.__whatsapp)).searchParams.get('text');
+  assert.match(deliveryMsg,/Dirección: Calle Prueba 10, Centro/);assert.match(deliveryMsg,/Envío: \$20 MXN/);assert.match(deliveryMsg,/Total del pedido: \$160 MXN/);
+  await page.selectOption('#order-method','pickup');assert.equal(await page.locator('#cart-total').textContent(),'$140');assert.equal(await page.locator('#order-address').isDisabled(),true);
+  await page.screenshot({path:path.join(__dirname,'../qa/cart-mobile.png'),fullPage:true});
+  await page.keyboard.press('Escape');assert.equal(await page.locator('#cart-dialog').isVisible(),false);
+  for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`menu overflow ${width}`);}
+  await page.selectOption('#theme-select','halloween');await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(__dirname,'../qa/menu-mobile.png'),fullPage:true});
+  await page.evaluate(()=>localStorage.removeItem('compaitos-cart'));await page.reload();
+  await page.locator('[data-category="Por kilo"]').click();
+  await page.locator('[data-add="p37"][data-amount="0.5"]').click();assert.equal(await page.locator('#cart-bar-total').textContent(),'$140');
+  await page.reload();assert.equal(await page.locator('#cart-bar-total').textContent(),'$140');
+  await page.locator('#open-cart').click();
+  await page.locator('[data-quantity="p37"][data-delta="0.5"]').click();assert.equal(await page.locator('#cart-total').textContent(),'$280');
+  await page.locator('[data-quantity="p37"][data-delta="0.5"]').click();assert.equal(await page.locator('#cart-total').textContent(),'$420');
+  await page.locator('[data-quantity="p37"][data-delta="-0.5"]').click();await page.locator('[data-quantity="p37"][data-delta="-0.5"]').click();
+  await page.selectOption('#order-method','delivery');await page.locator('#order-address').fill('Prueba 10');await page.locator('#customer-name').fill('Prueba');
+  assert.equal(await page.locator('#cart-total').textContent(),'$160');
+  await page.evaluate(()=>{window.open=url=>{window.__whatsapp=url;return {opener:null};};});await page.locator('#send-order').click();
+  const halfMsg=new URL(await page.evaluate(()=>window.__whatsapp)).searchParams.get('text');assert.match(halfMsg,/0.5 kg de carne al pastor — \$140/);assert.match(halfMsg,/Total del pedido: \$160 MXN/);
+  await page.locator('[data-quantity="p37"][data-delta="-0.5"]').click();assert.equal(await page.locator('#order-form').isVisible(),false);
+  await page.keyboard.press('Escape');
+  await page.goto('http://127.0.0.1:4173');await page.evaluate(()=>{window.open=url=>{window.__whatsapp=url;return {opener:null};};});
+  await page.locator('[name=date]').fill('2027-12-12');await page.locator('[name=guests]').fill('30');await page.locator('[name=location]').fill('Centro, Tlaxcala');await page.locator('#event-form button').click();
+  const eventMsg=new URL(await page.evaluate(()=>window.__whatsapp)).searchParams.get('text');assert.match(eventMsg,/Personas: 30/);assert.match(eventMsg,/12\/12\/2027/);
+  await page.goto('http://127.0.0.1:4173/menu.html');
+  assert.equal(await page.locator('.carta-sheet').count(),2);assert.equal(await page.locator('[data-add]').count(),0);assert.equal(await page.locator('#cart-dialog').count(),0);
+  assert.equal(await page.locator('.carta-nav a[href="pedidos.html"]').count(),1);
+  assert.equal(await page.locator('[data-price-id="p41"]').textContent(),'$320.00');
+  assert.ok(await page.locator('.printed-logo').evaluate(el=>el.complete&&el.naturalWidth>0));
+  for(const width of [320,390,768,1440]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true,`carta overflow ${width}`);}
+  await page.waitForTimeout(350);await page.screenshot({path:path.join(__dirname,'../qa/carta-desktop.png'),fullPage:true});
+  await page.selectOption('#theme-select','original');await page.setViewportSize({width:390,height:844});await page.screenshot({path:path.join(__dirname,'../qa/carta-mobile.png'),fullPage:true});
+  await page.locator('.carta-nav a[href="pedidos.html"]').click();assert.ok(page.url().endsWith('/pedidos.html'));assert.equal(await page.locator('.menu-item').count(),53);
+  await page.goto('http://127.0.0.1:4173/qr.html');assert.ok(await page.locator('.qr-sheet>img').evaluate(el=>el.complete&&el.naturalWidth>0));
+  assert.deepEqual(errors,[]);console.log('PASS: 53 productos, 3 sucursales, búsqueda, categorías, persistencia de tema y carrito, cantidades, total y mensaje WhatsApp, cotización, QR, diálogo y anchos 320/390/768/1440. No se enviaron mensajes.');
+ } finally {await browser.close();}
+})().catch(e=>{console.error(e);process.exit(1)});
