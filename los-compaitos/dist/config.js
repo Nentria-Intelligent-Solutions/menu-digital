@@ -1,10 +1,10 @@
 // Configuración común: cambiar theme y publicar actualiza página y menú para todos.
 window.BUSINESS = {
-  name: 'Los Compaitos', theme: 'halloween', deliveryFee: 20, whatsapp: '522461187019',
-  siteUrl: 'https://menudigital.nentria.com',
+  name: 'Los Compaitos', theme: 'marca', deliveryFee: 30, whatsapp: '522461187019',
+  siteUrl: 'https://loscompaitos.nentria.com',
   branches: [
     {id:'la-loma',name:'La Loma',address:'Calle 3 No. 100, Loma Xicohténcatl',phone:'2461442278',map:'Taquería Los Compaitos Calle 3 100 Loma Xicohténcatl Tlaxcala'},
-    {id:'independencia',name:'Independencia',address:'Av. Independencia No. 34, Centro',phone:'2461442293',map:'Taquería Los Compaitos Independencia 34 Centro Tlaxcala'},
+    {id:'independencia',name:'Independencia',address:'Av. Independencia 37–65, Centro',phone:'2461442293',map:'Taquería Los Compaitos Independencia 37-65 Centro Tlaxcala'},
     {id:'guillermo-valle',name:'Guillermo Valle',address:'Blvd. Guillermo Valle No. 78, a 100 m de la Clínica 8 IMSS',phone:'2461444881',map:'Taquería Los Compaitos Boulevard Guillermo Valle 78 Tlaxcala'}
   ]
 };

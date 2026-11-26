@@ -1,0 +1,1063 @@
+/* Los Compaitos — bold, warm, alive
+   Inspired by: mytacoculture.com / Vera / Maleza */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --hg: #238c4a;        /* green vivo (marca) más claro */
+  --hd: #1a7039;        /* deep green */
+  --hs: #2a9654;        /* surface */
+  --hw: #2f9d58;        /* warm surface */
+  --ho: #f58b2d;        /* orange marca */
+  --hgold: #f0a030;     /* gold */
+  --hcream: #fff8ed;    /* cream */
+  --htint: #fff3d8;     /* warm white */
+  --hmuted: #d4e8c8;    /* muted text */
+  --hrule: rgba(255,248,237,.15);
+  --hred: #8c2931;      /* holiday red */
+  --hgoldh: #ffd784;    /* holiday gold */
+  --hwire: #6c8369;
+  --ff: 'DM Sans', system-ui, sans-serif;
+  --fc: 'Barlow Condensed', Impact, 'Arial Narrow', sans-serif;
+  --fs: 'Playfair Display', Georgia, serif;
+  --radius: .4rem;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---- Reset ---- */
+html, body { overflow-x: clip; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; }
+
+.home {
+  background: var(--hg);
+  color: var(--hcream);
+  font-family: var(--ff);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  /* Textura granulada sutil sobre todo el body */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+}
+
+/* ---- Blobs flotantes de fondo (estilo Nentria) ---- */
+/* Los blobs van dentro de cada sección, no fixed */
+
+/* Que el contenido quede por encima de los blobs */
+.home-header, .home-hero, .home-marquee,
+.home-photo-break, .home-posadas, .home-footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Secciones con posición relativa para decoraciones */
+.home-about,
+.home-favorites,
+.home-packages,
+.home-contact,
+.home-branches {
+  position: relative;
+  overflow: visible;
+}
+
+/* ---- Nochebuenas decorativas (img elements) ---- */
+.home-deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .82;
+  filter: hue-rotate(-15deg) saturate(1.8) drop-shadow(0 0 8px rgba(180, 30, 30, .3));
+}
+.home-deco--1  { width: clamp(4.5rem, 9vw, 8rem);   top: 1.5rem;  right: 2rem;  --deco-rot: 12deg; }
+.home-deco--2  { width: clamp(3.5rem, 7vw, 5.5rem); bottom: 2rem; left: 1.5rem; --deco-rot: -18deg; }
+.home-deco--3  { width: clamp(5rem, 10vw, 8.5rem);  top: 2.5rem;  right: 1rem;  --deco-rot: 20deg; }
+.home-deco--4  { width: clamp(3.5rem, 6vw, 5rem);   bottom: 3rem; left: 2rem;   --deco-rot: -10deg; }
+.home-deco--5  { width: clamp(4.5rem, 8vw, 7rem);   top: 2rem;    right: 2.5rem; --deco-rot: 8deg; }
+.home-deco--6  { width: clamp(4rem, 7vw, 6rem);     bottom: 3rem; left: 1rem;   --deco-rot: -22deg; }
+.home-deco--7  { width: clamp(5rem, 9vw, 7.5rem);   bottom: 2rem; right: 1.5rem; --deco-rot: 15deg; }
+.home-deco--8  { width: clamp(4rem, 8vw, 6.5rem);   top: 2rem;    right: 2rem;  --deco-rot: -8deg; }
+.home-deco--9  { width: clamp(3.5rem, 6vw, 5rem);   bottom: 2rem; left: 2rem;   --deco-rot: 25deg; }
+.home-deco--10 { width: clamp(4rem, 7vw, 6rem);     top: 45%;     left: .5rem;  --deco-rot: -15deg; }
+.home-deco--11 { width: clamp(3.5rem, 6vw, 5.5rem); bottom: 5rem; right: 1rem;  --deco-rot: 30deg; }
+.home-deco--12 { width: clamp(3.5rem, 6vw, 5rem);   top: 45%;     right: .5rem; --deco-rot: -5deg; }
+
+/* ---- Series de luces navideñas ---- */
+.home-xmas-lights {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.75rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.home-xmas-lights::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--hwire) 0, var(--hwire) 20px,
+    transparent 20px, transparent 22px
+  );
+  opacity: .5;
+}
+.home-xmas-lights span {
+  width: .55rem;
+  height: .9rem;
+  margin-top: 2px;
+  border-radius: 0 0 50% 50%;
+  --bulb: var(--hred);
+  background: var(--bulb);
+  box-shadow: 0 0 .5rem var(--bulb), 0 0 1.2rem var(--bulb);
+}
+.home-xmas-lights span:nth-child(4n+1) { --bulb: #e63946; }
+.home-xmas-lights span:nth-child(4n+2) { --bulb: var(--hgoldh); }
+.home-xmas-lights span:nth-child(4n+3) { --bulb: #4ade80; }
+.home-xmas-lights span:nth-child(4n+4) { --bulb: var(--ho); }
+
+/* Variante en el bottom de la sección */
+.home-xmas-lights--bottom {
+  top: auto;
+  bottom: 0;
+}
+.home-xmas-lights--bottom span {
+  border-radius: 50% 50% 0 0;
+  margin-top: 0;
+  margin-bottom: 2px;
+  align-self: end;
+}
+
+.home img { display: block; max-width: 100%; }
+.home a { color: inherit; text-decoration: none; }
+.home :is(button, input) { font: inherit; }
+.home :focus-visible { outline: 2px solid var(--ho); outline-offset: 3px; }
+.home .skip { position: fixed; top: -10rem; padding: .75rem; background: var(--hd); z-index: 50; }
+.home .skip:focus { top: .75rem; }
+.home .toast:empty { display: none; }
+.home-wrap { width: min(74rem, calc(100% - clamp(1.5rem, 5vw, 5rem))); margin-inline: auto; }
+
+/* ---- Labels / eyebrows ---- */
+.home-label {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--htint);
+  margin-bottom: .5rem;
+}
+.home-label--light { color: var(--htint); }
+
+/* ---- Buttons ---- */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  min-height: 3.25rem;
+  padding: .75rem 2rem;
+  background: var(--ho);
+  border: 2px solid var(--ho);
+  color: var(--hd);
+  border-radius: var(--radius);
+  font-size: .9rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: all .3s var(--ease);
+}
+.home-btn:hover {
+  background: var(--hcream);
+  border-color: var(--hcream);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(245,146,59,.3);
+}
+.home-btn--ghost {
+  background: transparent;
+  color: var(--hcream);
+  border-color: rgba(250,243,230,.4);
+}
+.home-btn--ghost:hover {
+  background: var(--hcream);
+  color: var(--hd);
+  border-color: var(--hcream);
+}
+.home-btn:active { transform: translateY(0); }
+
+/* ---- Links ---- */
+.home-link {
+  display: inline-block;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--ho);
+  transition: color .2s;
+}
+.home-link:hover { color: var(--hcream); }
+
+/* ==================================
+   HEADER — sticky glass
+   ================================== */
+.home-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(35,140,74,.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--hrule);
+}
+.home-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .55rem;
+}
+
+/* Brand */
+.home-brand { display: flex; align-items: center; gap: .6rem; }
+.home-logo {
+  width: clamp(3.25rem, 5.5vw, 4.5rem);
+  height: auto;
+  border-radius: .2rem;
+  border: 1px solid rgba(232,180,76,.15);
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  transition: transform .3s var(--ease);
+}
+.home-brand:hover .home-logo { transform: scale(1.06); }
+.home-brand-text { display: flex; flex-direction: column; }
+.home-brand-name {
+  font-family: var(--fc);
+  font-size: clamp(1.15rem, 2.4vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: .01em;
+}
+.home-brand-tag {
+  font-size: .6rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--hmuted);
+  margin-top: .15rem;
+}
+
+/* Nav links */
+.home-nav nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  font-size: .85rem;
+  font-weight: 500;
+}
+.home-nav nav a { position: relative; padding-block: .2rem; }
+.home-nav nav a::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -3px;
+  height: 2px;
+  background: var(--ho);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s var(--ease);
+}
+.home-nav nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* CTA button in header */
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: .45rem 1.15rem;
+  background: var(--ho);
+  color: var(--hd);
+  border-radius: var(--radius);
+  font-size: .78rem;
+  font-weight: 700;
+  transition: background .2s, transform .2s;
+}
+.home-cta:hover { background: var(--hcream); transform: translateY(-1px); }
+
+/* ==================================
+   HERO — full viewport
+   ================================== */
+.home-hero {
+  position: relative;
+  min-height: calc(100svh - 4.5rem);
+  display: flex;
+  align-items: flex-end;
+  overflow: clip;
+}
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top, var(--hd) 0%, rgba(26,112,57,.65) 35%, rgba(26,112,57,.12) 60%, rgba(26,112,57,.25) 100%);
+}
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+.home h1 {
+  font-family: var(--fc);
+  font-size: clamp(4.5rem, 13vw, 10rem);
+  font-weight: 900;
+  line-height: .88;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+  color: var(--hcream);
+  text-shadow: 0 4px 30px rgba(0,0,0,.3);
+}
+.home-hero-content > p {
+  font-size: clamp(.95rem, 1.8vw, 1.2rem);
+  color: rgba(250,243,230,.75);
+  max-width: 36ch;
+  margin: 1rem 0 1.75rem;
+  line-height: 1.65;
+}
+.home-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+/* Holiday lights */
+.home-holiday-lights {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1.3rem;
+  border-top: 1px solid var(--hwire);
+  pointer-events: none;
+  z-index: 3;
+}
+.home-holiday-lights span {
+  width: .4rem;
+  height: .72rem;
+  border-radius: 0 0 50% 50%;
+  --bulb: var(--hgoldh);
+  background: var(--bulb);
+  box-shadow: 0 0 .6rem var(--bulb);
+}
+.home-holiday-lights span:nth-child(3n+2) { --bulb: var(--ho); }
+.home-holiday-lights span:nth-child(3n+3) { --bulb: var(--hcream); }
+
+/* Nochebuena */
+.home .home-nochebuena {
+  position: absolute;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  width: clamp(4rem, 9vw, 7.5rem);
+  height: auto;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* ==================================
+   MARQUEE — auto-scroll, bold
+   ================================== */
+.home-marquee {
+  overflow: clip;
+  background: var(--ho);
+  position: relative;
+}
+.home-marquee-track {
+  display: flex;
+  width: max-content;
+  padding: .55rem 0;
+  font-family: var(--fc);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: var(--hd);
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: marquee-loop 20s linear infinite;
+}
+.home-marquee-track span { padding-inline: .15rem; }
+@keyframes marquee-loop {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ==================================
+   ABOUT — split image + text
+   ================================== */
+.home-about {
+  padding-block: clamp(4rem, 9vw, 8rem);
+  background:
+    radial-gradient(circle 24rem at 90% 15%, rgba(245,139,45,.55), transparent 65%),
+    radial-gradient(circle 18rem at 5% 80%, rgba(60,180,90,.35), transparent 65%),
+    radial-gradient(circle 14rem at 50% 50%, rgba(245,180,80,.2), transparent 60%);
+}
+.home-about-grid {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+.home-about-copy {
+  width: 42%;
+  min-width: 0;
+}
+.home-about-photo {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 69%;
+  overflow: clip;
+  mask-image: linear-gradient(to right, #000 67%, transparent),
+              linear-gradient(to bottom, transparent, #000 15%, #000 84%, transparent);
+  mask-composite: intersect;
+}
+.home-about-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 51%;
+  transition: transform .6s var(--ease);
+}
+.home-about-photo:hover img { transform: scale(1.04); }
+.home h2 {
+  font-family: var(--fc);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: .92;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+.home-about-copy p {
+  color: var(--hmuted);
+  margin: 1rem 0 1.5rem;
+  max-width: 38ch;
+  line-height: 1.75;
+  font-size: 1.02rem;
+}
+
+/* ==================================
+   FAVORITES
+   ================================== */
+.home-favorites {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background:
+    radial-gradient(circle 22rem at 10% 20%, rgba(245,139,45,.5), transparent 65%),
+    radial-gradient(circle 20rem at 92% 80%, rgba(60,180,90,.35), transparent 65%),
+    radial-gradient(circle 14rem at 55% 40%, rgba(245,180,80,.18), transparent 60%),
+    rgba(20,75,40,.35);
+}
+.home-section-head {
+  margin-bottom: 2.5rem;
+}
+.home-section-head p {
+  color: var(--hmuted);
+  margin-top: .75rem;
+  max-width: 50ch;
+  line-height: 1.7;
+}
+
+/* Card grid */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.home-card {
+  display: block;
+  background: rgba(12, 55, 30, .8);
+  border-radius: var(--radius);
+  overflow: clip;
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.home-card:hover {
+  transform: translateY(-.5rem);
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+}
+.home-card-img { overflow: clip; }
+.home-card-img img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+.home-card:hover .home-card-img img { transform: scale(1.08); }
+.home-card-body {
+  padding: 1.25rem 1.15rem;
+}
+.home-card-body h3 {
+  font-family: var(--fc);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: .35rem;
+}
+.home-card-body p {
+  font-size: .82rem;
+  color: var(--hmuted);
+  margin-bottom: .6rem;
+}
+.home-card-body strong {
+  font-family: var(--fc);
+  font-size: 1.1rem;
+  color: var(--ho);
+}
+
+/* ==================================
+   FULL-WIDTH PHOTO BREAK
+   ================================== */
+.home-photo-break {
+  position: relative;
+  height: clamp(18rem, 42vw, 30rem);
+  overflow: clip;
+}
+.home-photo-break img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.home-photo-break-text {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(to bottom, rgba(26,107,58,.2), rgba(10,31,22,.7));
+}
+.home-photo-break-text h2 {
+  font-family: var(--fs);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 400;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--hcream);
+  text-shadow: 0 4px 20px rgba(0,0,0,.4);
+}
+
+/* ==================================
+   POSADAS / HOLIDAY
+   ================================== */
+.home-posadas {
+  background:
+    linear-gradient(135deg, rgba(140,41,49,.93), rgba(100,22,30,.96)),
+    url('assets/navidad-pattern.svg') repeat;
+  background-size: auto, 220px 190px;
+}
+.home-posadas-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: clamp(2.5rem, 6vw, 4rem);
+}
+.home-posadas h2 { color: var(--htint); }
+.home-posadas p {
+  margin: .75rem 0 1.25rem;
+  color: rgba(250,240,220,.75);
+  max-width: 36ch;
+}
+.home-posadas img {
+  width: min(100%, 18rem);
+  height: auto;
+  justify-self: center;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,.4));
+}
+
+/* ==================================
+   PACKAGES
+   ================================== */
+.home-packages {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background:
+    radial-gradient(circle 24rem at 85% 10%, rgba(245,139,45,.55), transparent 65%),
+    radial-gradient(circle 18rem at 10% 85%, rgba(245,180,80,.4), transparent 65%),
+    radial-gradient(circle 16rem at 45% 50%, rgba(60,180,90,.25), transparent 60%);
+}
+.home-pkg-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+/* Table */
+.pkg-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.pkg-table caption {
+  text-align: left;
+  padding-bottom: .6rem;
+  font-size: .7rem;
+  color: var(--hmuted);
+  letter-spacing: .06em;
+}
+.pkg-table thead th {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--hmuted);
+  padding-bottom: .65rem;
+  border-bottom: 2px solid var(--hrule);
+}
+.pkg-table tbody th,
+.pkg-table tbody td {
+  padding: .8rem .6rem;
+  border-bottom: 1px solid var(--hrule);
+  font-size: .95rem;
+}
+.pkg-table tbody th { font-weight: 600; }
+.pkg-table :is(th,td):last-child { text-align: right; }
+.pkg-pop {
+  background: rgba(245,146,59,.08);
+  border-left: 3px solid var(--ho);
+}
+.pkg-pop th, .pkg-pop td { color: var(--ho); font-weight: 700; }
+
+/* Includes */
+.home-includes h3 {
+  font-family: var(--fc);
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: .6rem;
+}
+.home-event-photo {
+  width: 100%;
+  display: block;
+  height: clamp(6rem, 11vw, 8rem);
+  object-fit: cover;
+  object-position: center 52%;
+  border-radius: var(--radius);
+  margin-bottom: .8rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+.home-includes ul {
+  padding-inline-start: 1.15rem;
+  color: var(--hmuted);
+}
+.home-includes li { margin-block: .4rem; font-size: .92rem; }
+.home-note {
+  margin: 1rem 0;
+  font-size: .82rem;
+  color: var(--hmuted);
+}
+
+/* ==================================
+   CONTACT
+   ================================== */
+.home-contact {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background:
+    radial-gradient(circle 22rem at 20% 25%, rgba(245,139,45,.5), transparent 65%),
+    radial-gradient(circle 18rem at 85% 80%, rgba(60,180,90,.35), transparent 65%),
+    radial-gradient(circle 14rem at 60% 55%, rgba(245,180,80,.2), transparent 60%),
+    rgba(20,70,38,.3);
+}
+.home-contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.home-contact h2 { margin-top: .35rem; }
+.home-contact p {
+  max-width: 32ch;
+  margin: 1rem 0 1.25rem;
+  color: var(--hmuted);
+}
+
+/* WhatsApp link */
+.home-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #25d366;
+  transition: color .2s;
+}
+.home-wa:hover { color: var(--hcream); }
+
+/* Form */
+.home-contact form { display: grid; gap: .85rem; }
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+.home-contact label {
+  display: grid;
+  gap: .3rem;
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--hmuted);
+}
+.home-contact input {
+  width: 100%;
+  min-width: 0;
+  min-height: 3.1rem;
+  padding: .7rem .85rem;
+  border: 1px solid rgba(250,243,230,.12);
+  border-radius: var(--radius);
+  background: var(--hs);
+  color: var(--hcream);
+  color-scheme: dark;
+  font-size: .93rem;
+  transition: border-color .25s, box-shadow .25s;
+}
+.home-contact input:focus {
+  border-color: var(--ho);
+  box-shadow: 0 0 0 3px rgba(245,146,59,.1);
+}
+.home-contact input::placeholder { color: rgba(168,184,158,.4); }
+.home-contact .home-btn { justify-self: start; }
+.home-contact small { font-size: .7rem; color: var(--hmuted); }
+
+/* ==================================
+   BRANCHES
+   ================================== */
+.home-branches {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background:
+    radial-gradient(circle 22rem at 75% 20%, rgba(245,139,45,.5), transparent 65%),
+    radial-gradient(circle 16rem at 12% 80%, rgba(60,180,90,.35), transparent 65%),
+    radial-gradient(circle 14rem at 40% 45%, rgba(245,180,80,.2), transparent 60%);
+}
+.home .branch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.15rem;
+}
+.home .branch-card {
+  padding: 1.5rem;
+  background: rgba(12, 55, 30, .85);
+  border: 1px solid rgba(250,243,230,.15);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--ho);
+  transition: transform .3s var(--ease), box-shadow .3s;
+}
+.home .branch-card:hover {
+  transform: translateY(-.3rem);
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+.home .branch-card h3 {
+  font-family: var(--fc);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.home .branch-card p { color: var(--hmuted); font-size: .85rem; margin-top: .3rem; }
+.home .branch-hours { font-size: .8rem; }
+.home .branch-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem 1rem;
+  margin-top: .75rem;
+}
+.home .branch-links a {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--ho);
+  transition: color .2s;
+}
+.home .branch-links a:hover { color: var(--hcream); }
+.home .branch-number { display: none; }
+
+/* ==================================
+   FOOTER
+   ================================== */
+.home-footer {
+  background: rgba(10,31,22,.7);
+  border-top: 1px solid var(--hrule);
+  padding-block: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+.home-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.home-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+.home-footer-brand img {
+  width: 2.5rem;
+  height: auto;
+  border-radius: .15rem;
+}
+.home-footer-brand span {
+  font-family: var(--fc);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+.home-footer-links {
+  display: flex;
+  gap: 1.5rem;
+  font-size: .82rem;
+  font-weight: 500;
+}
+.home-footer-links a:hover { color: var(--ho); }
+.home-footer p {
+  font-size: .75rem;
+  color: var(--hmuted);
+  font-style: italic;
+}
+
+/* ==================================
+   TOAST
+   ================================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translate(-50%, 1rem);
+  background: var(--ho);
+  color: var(--hd);
+  border-radius: var(--radius);
+  padding: .6rem 1.4rem;
+  font-size: .82rem;
+  font-weight: 700;
+  z-index: 25;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s, transform .25s var(--ease);
+  box-shadow: 0 8px 28px rgba(0,0,0,.35);
+}
+.toast.visible { opacity: 1; transform: translate(-50%, 0); }
+
+/* ==================================
+   ANIMATIONS
+   ================================== */
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance */
+  .home-hero-content {
+    animation: hfade .7s .1s var(--ease) both;
+  }
+  .home-nochebuena {
+    animation: hflower .7s .5s ease-out both;
+  }
+  .home-holiday-lights span {
+    animation: hlights 1s ease-in-out 3 alternate both;
+  }
+  .home-holiday-lights span:nth-child(even) { animation-delay: .3s; }
+
+  /* Scroll reveals */
+  .home-revealed { animation: hfade .6s var(--ease) both; }
+
+  /* Hover on photos */
+  .home-about-photo img,
+  .home-card-img img {
+    transition: transform .5s var(--ease);
+  }
+
+  /* Cards */
+  .home-card {
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+
+  /* Branch cards */
+  .home .branch-card {
+    transition: transform .3s var(--ease), box-shadow .3s;
+  }
+
+  /* Photo break subtle zoom */
+  .home-photo-break img {
+    transition: transform 8s var(--ease);
+  }
+  .home-photo-break:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Posadas float */
+  .home-posadas img {
+    animation: hfloat 5s ease-in-out infinite;
+  }
+
+  /* Hero bg slow zoom */
+  .home-hero-bg {
+    animation: hzoom 20s ease-in-out infinite alternate;
+  }
+
+  /* Series de luces navideñas parpadeo */
+  .home-xmas-lights span {
+    animation: xmas-twinkle 1.5s ease-in-out infinite alternate;
+  }
+  .home-xmas-lights span:nth-child(odd) { animation-delay: 0s; }
+  .home-xmas-lights span:nth-child(even) { animation-delay: .75s; }
+  .home-xmas-lights span:nth-child(3n) { animation-delay: .4s; }
+
+  /* Nochebuenas decorativas flotan suavemente */
+  .home-deco {
+    animation: deco-float 7s ease-in-out infinite;
+  }
+  .home-deco--2, .home-deco--4, .home-deco--6, .home-deco--9 {
+    animation-delay: -3s;
+    animation-duration: 9s;
+  }
+  .home-deco--3, .home-deco--7 {
+    animation-delay: -5s;
+    animation-duration: 8s;
+  }
+}
+
+@keyframes hfade {
+  from { opacity: 0; transform: translateY(2rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hflower {
+  from { opacity: 0; transform: rotate(-15deg) scale(.75); }
+  to { opacity: 1; transform: rotate(0) scale(1); }
+}
+@keyframes hlights {
+  from { opacity: .35; }
+  to { opacity: 1; }
+}
+@keyframes hfloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-.65rem) rotate(3deg); }
+}
+@keyframes hzoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+@keyframes xmas-twinkle {
+  0% { opacity: .3; box-shadow: 0 0 .3rem var(--bulb); }
+  100% { opacity: 1; box-shadow: 0 0 .6rem var(--bulb), 0 0 1.5rem var(--bulb); }
+}
+@keyframes deco-float {
+  0%, 100% { transform: translateY(0) rotate(var(--deco-rot, 12deg)); }
+  50% { transform: translateY(-.5rem) rotate(calc(var(--deco-rot, 12deg) + 4deg)); }
+}
+
+/* ==================================
+   RESPONSIVE
+   ================================== */
+@media (max-width: 56rem) {
+  .home-about { padding-top: 0; }
+  .home-about-photo {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(13rem, 58vw, 23rem);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 65%, transparent);
+    mask-composite: add;
+  }
+  .home-about-copy { width: 100%; }
+  .home-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .home-pkg-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  .home-contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  .home .branch-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  .home-wrap { width: calc(100% - 1.25rem); }
+  .home-nav {
+    flex-wrap: wrap;
+    gap: .4rem .75rem;
+    padding-block: .4rem;
+  }
+  .home-nav nav {
+    order: 1;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding-block: .25rem;
+    font-size: .78rem;
+  }
+  .home-cta { font-size: .7rem; padding: .4rem .85rem; min-height: 2.2rem; }
+  .home-brand-name { font-size: 1rem; }
+  .home-brand-tag { font-size: .5rem; }
+  .home-logo { width: 2.75rem; }
+
+  .home h1 { font-size: clamp(3.5rem, 15vw, 5.5rem); }
+  .home h2 { font-size: clamp(2rem, 8vw, 3rem); }
+
+  .home-gallery { grid-template-columns: minmax(0, 1fr); }
+
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+
+  .home-posadas-grid { grid-template-columns: minmax(0, 1fr); }
+  .home-posadas img { width: min(100%, 13rem); justify-self: center; }
+
+  .home-marquee-track { font-size: 1.5rem; }
+
+  .home-photo-break { height: 14rem; }
+
+  .home-favorites, .home-packages, .home-contact, .home-branches, .home-about {
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+
+  .home .home-about { padding-top: 0; }
+
+  .home-footer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+    transition-duration: 0s !important;
+  }
+  .home-marquee-track { animation: none !important; }
+}
+
+@media print {
+  .home-header, .home-marquee, .toast, .home-holiday-lights, .home-nochebuena { display: none; }
+  .home { background: white; color: black; }
+}
+
+/* Motivos de la taquería sobre los fondos de cada sección. */
+.home { --taqueria-pattern: url("assets/patron-taqueria.svg"); }
+.home :is(.home-header, main > section, .home-marquee, .home-footer) {
+  isolation: isolate;
+}
+.home :is(.home-header, main > section, .home-marquee, .home-footer)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--taqueria-pattern) center top / clamp(17rem, 31vw, 26rem) auto repeat;
+  filter: blur(.7px);
+  opacity: .24;
+}
+.home :is(main > section, .home-header, .home-footer) > .home-wrap,
+.home .home-marquee-track { position: relative; z-index: 1; }
+.home :is(.home-hero, .home-photo-break)::after { opacity: .14; }
+.home .home-about::after { z-index: -1; }
+
+@media print {
+  .home :is(main > section, .home-footer)::after { display: none; }
+}

@@ -6,26 +6,51 @@
   const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const read = (k,f) => {try{return JSON.parse(localStorage.getItem(k))??f;}catch{return f;}};
   const save = (k,v) => {try{localStorage.setItem(k,JSON.stringify(v));}catch{/* Navigation still works without storage. */}};
-  const themes = {halloween:{banner:'EDICIÓN HALLOWEEN',word:'MIEDO.',tagline:'EL SUSTO ES QUEDARTE CON EL ANTOJO'},original:{banner:'EL BUEN SABOR SE COMPARTE',word:'VERDAD.',tagline:'CON HAMBRE Y CON LOS COMPAS'},navidad:{banner:'EDICIÓN NAVIDAD',word:'FIESTA.',tagline:'EL MEJOR REGALO ES COMPARTIR'}};
-  function applyTheme(theme){
-    const t=themes[theme]||themes[BUSINESS.theme];
-    document.documentElement.dataset.theme=themes[theme]?theme:BUSINESS.theme;
-    $$('[data-season-banner]').forEach(el=>el.textContent=t.banner);
-    if($('[data-season-word]')) $('[data-season-word]').textContent=t.word;
-    if($('.bar-center')) $('.bar-center').textContent=t.tagline;
-    if($('#theme-select')) $('#theme-select').value=document.documentElement.dataset.theme;
-  }
-  applyTheme(read('compaitos-theme',BUSINESS.theme));
-  $('#theme-select')?.addEventListener('change',e=>{applyTheme(e.target.value);save('compaitos-theme',e.target.value);});
+  const theme = BUSINESS.theme === 'navidad' ? {banner:'NAVIDAD EN LOS COMPAITOS',word:'NAVIDAD.',tagline:'SABOR PARA COMPARTIR EN ESTAS FIESTAS'} : {banner:'LOS COMPAITOS',word:'COMPARTIR.',tagline:'TAQUERÍA EN TLAXCALA'};
+  document.documentElement.dataset.theme=BUSINESS.theme;
+  $$('[data-season-banner]').forEach(el=>el.textContent=theme.banner);
+  if($('[data-season-word]')) $('[data-season-word]').textContent=theme.word;
+  if($('.bar-center')) $('.bar-center').textContent=theme.tagline;
   let toastTimer;
   function toast(message){if(!$('#toast'))return;$('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),2200);}
   function whatsapp(message){const url=`https://wa.me/${BUSINESS.whatsapp}?text=${encodeURIComponent(message)}`;const tab=window.open(url,'_blank');if(tab)tab.opener=null;else window.location.href=url;}
-  if($('#branch-cards')) $('#branch-cards').innerHTML=BUSINESS.branches.map((b,i)=>`<article class="branch-card"><span class="branch-number">0${i+1} / LOS COMPAITOS</span><h3>${escapeHTML(b.name)}</h3><p>${escapeHTML(b.address)}</p><p class="branch-hours">Llámanos para consultar el horario de hoy.</p><div class="branch-links"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.map)}" target="_blank" rel="noopener">Buscar en Maps ↗</a><a href="tel:+52${b.phone}">Llamar ${b.phone.replace(/(\d{3})(\d{3})(\d{4})/,'$1 $2 $3')} ↗</a></div></article>`).join('');
+  if($('#branch-cards')) $('#branch-cards').innerHTML=BUSINESS.branches.map((b,i)=>`<article class="branch-card"><span class="branch-number">0${i+1} / LOS COMPAITOS</span><h3>${escapeHTML(b.name)}</h3><p>${escapeHTML(b.address)}</p><p class="branch-hours">Cierre: lunes a jueves, 1:00 a. m. · viernes a domingo, 3:00 a. m.</p><div class="branch-links"><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(b.map)}" target="_blank" rel="noopener">Buscar en Maps</a><a href="tel:+52${b.phone}">Llamar +52 ${b.phone.replace(/(\d{3})(\d{3})(\d{4})/,'$1 $2 $3')}</a></div></article>`).join('');
   const eventForm=$('#event-form');
   if(eventForm){const now=new Date();const today=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');eventForm.elements.date.min=today;eventForm.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(eventForm);const location=String(f.get('location')).trim();if(!location){eventForm.elements.location.setCustomValidity('Escribe la ubicación del evento.');eventForm.elements.location.reportValidity();return;}const date=String(f.get('date')).split('-').reverse().join('/');whatsapp(`¡Hola, Los Compaitos! Quisiera cotizar una taquiza a domicilio.\nFecha: ${date}\nPersonas: ${f.get('guests')}\nUbicación: ${location}\n¿Me comparten disponibilidad, opciones y precio?`);});eventForm.elements.location.addEventListener('input',()=>eventForm.elements.location.setCustomValidity(''));}
   $('#print-qr')?.addEventListener('click',()=>window.print());
   const hero=$('.hero-art');
   if(hero && matchMedia('(hover:hover) and (prefers-reduced-motion:no-preference)').matches){hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();$('.hero-food').style.transform=`scale(1.07) translate(${(e.clientX-r.left-r.width/2)*.018}px,${(e.clientY-r.top-r.height/2)*.018}px)`;});hero.addEventListener('pointerleave',()=>$('.hero-food').style.transform='scale(1.03)');setTimeout(()=>{if($('.hero-food'))$('.hero-food').style.animation='none';},1600);}
+  const homeReveals = $$('[data-home-reveal]');
+  if (homeReveals.length && 'IntersectionObserver' in window &&
+      matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const startingHeight = innerHeight;
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('home-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+    for (const section of homeReveals) {
+      if (section.getBoundingClientRect().top < startingHeight) continue;
+      observer.observe(section);
+    }
+  }
+  const selectionPhoto = $('.home-selection-photo img');
+  if (selectionPhoto) {
+    for (const link of $$('[data-preview]')) {
+      const preview = () => {
+        if (selectionPhoto.getAttribute('src') === link.dataset.preview) return;
+        selectionPhoto.src = link.dataset.preview;
+        selectionPhoto.alt = link.dataset.previewAlt;
+        if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+          selectionPhoto.animate([{opacity: .4}, {opacity: 1}], {duration: 260});
+        }
+      };
+      link.addEventListener('pointerenter', preview);
+      link.addEventListener('focus', preview);
+    }
+  }
   if(!$('#menu-results')) return;
   const params=new URLSearchParams(location.search);
   const categories=[...new Set(MENU.map(p=>p.category))];
@@ -53,6 +78,7 @@
   $('#clear-search').addEventListener('click',()=>{category='Todo';$('#menu-search').value='';renderMenu();$('#menu-search').focus();});
   function items(){return MENU.filter(p=>cart[p.id]).map(p=>({...p,quantity:cart[p.id]}));}
   function total(){return items().reduce((sum,p)=>sum+p.price*p.quantity,0);}
+  $('#order-method option[value=delivery]').textContent = `A domicilio · envío ${money(BUSINESS.deliveryFee)}`;
   function shipping(){return count() && $('#order-method').value==='delivery' ? BUSINESS.deliveryFee : 0;}
   function count(){return items().reduce((sum,p)=>sum+(byWeight(p)?1:p.quantity),0);}
   function updateCart(){

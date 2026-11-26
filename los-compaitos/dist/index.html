@@ -1,19 +1,416 @@
 <!doctype html>
-<html lang="es-MX" data-theme="halloween"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#151610"><title>Los Compaitos · Un antojo de miedo</title><meta name="description" content="Tacos al pastor, especialidades y taquizas. Explora el menú de Los Compaitos y encuentra nuestras tres sucursales."><link rel="stylesheet" href="styles.css"><script src="config.js" defer></script><script src="app.js" defer></script></head>
-<body><a class="skip" href="#contenido">Ir al contenido</a>
-<div class="season-bar"><span data-season-banner>EDICIÓN HALLOWEEN</span><span class="bar-center">EL SUSTO ES QUEDARTE CON EL ANTOJO</span><span>TLAXCALA, MX ↗</span></div>
-<header class="header wrap"><a class="brand" href="index.html" aria-label="Los Compaitos, inicio"><img class="brand-logo" src="assets/logo-los-compaitos.png" alt="Taquería Los Compaitos" width="910" height="840"></a><nav aria-label="Principal"><a href="menu.html">El menú</a><a href="#taquizas">Taquizas</a><a href="#sucursales">Sucursales</a></nav><a class="button small" href="pedidos.html">Arma tu pedido <span>↗</span></a></header>
+<html lang="es-MX" data-theme="marca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12382a">
+  <title>Los Compaitos | Tacos y taquizas en Tlaxcala</title>
+  <meta name="description" content="Taquería Los Compaitos en Tlaxcala. Tacos al pastor, árabes, gringas, quesos fundidos y taquizas a domicilio para eventos. 3 sucursales en Tlaxcala. Pide por WhatsApp al +52 246 118 7019.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://loscompaitos.nentria.com/">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Los Compaitos">
+  <meta property="og:title" content="Los Compaitos | Tacos y taquizas en Tlaxcala">
+  <meta property="og:description" content="Taquería en Tlaxcala con tacos al pastor, árabes, gringas y taquizas a domicilio para eventos. 3 sucursales.">
+  <meta property="og:image" content="https://loscompaitos.nentria.com/assets/logo-compaitos-transparente.png">
+  <meta property="og:image:width" content="537">
+  <meta property="og:image:height" content="640">
+  <meta property="og:url" content="https://loscompaitos.nentria.com/">
+  <meta property="og:locale" content="es_MX">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Los Compaitos | Tacos y taquizas en Tlaxcala">
+  <meta name="twitter:description" content="Taquería en Tlaxcala con tacos al pastor, árabes, gringas y taquizas a domicilio para eventos.">
+  <meta name="twitter:image" content="https://loscompaitos.nentria.com/assets/pastorportada-compaitos.webp">
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "@id": "https://loscompaitos.nentria.com/#restaurant",
+    "name": "Los Compaitos",
+    "alternateName": "Taquería Los Compaitos",
+    "description": "Taquería en Tlaxcala especializada en tacos al pastor, árabes, gringas, quesos fundidos y especialidades. Servicio de taquizas a domicilio para bodas, XV años, posadas y eventos.",
+    "url": "https://loscompaitos.nentria.com",
+    "logo": "https://loscompaitos.nentria.com/assets/logo-compaitos-transparente.png",
+    "image": [
+      "https://loscompaitos.nentria.com/assets/pastorportada-compaitos.webp",
+      "https://loscompaitos.nentria.com/assets/tacos-menu-compaitos.webp",
+      "https://loscompaitos.nentria.com/assets/logo-compaitos-transparente.png"
+    ],
+    "telephone": "+52-246-118-7019",
+    "servesCuisine": ["Mexicana", "Tacos al pastor", "Comida mexicana"],
+    "priceRange": "$",
+    "currenciesAccepted": "MXN",
+    "paymentAccepted": "Efectivo, Tarjeta de crédito, Tarjeta de débito",
+    "areaServed": [
+      { "@type": "City", "name": "Tlaxcala", "addressRegion": "Tlaxcala", "addressCountry": "MX" },
+      { "@type": "City", "name": "Apizaco", "addressRegion": "Tlaxcala", "addressCountry": "MX" }
+    ],
+    "address": [
+      {
+        "@type": "PostalAddress",
+        "name": "Sucursal La Loma",
+        "streetAddress": "Calle 3 No. 100, Loma Xicohténcatl",
+        "addressLocality": "Tlaxcala",
+        "addressRegion": "Tlaxcala",
+        "addressCountry": "MX"
+      },
+      {
+        "@type": "PostalAddress",
+        "name": "Sucursal Independencia",
+        "streetAddress": "Av. Independencia 37-65, Centro",
+        "addressLocality": "Tlaxcala",
+        "addressRegion": "Tlaxcala",
+        "addressCountry": "MX"
+      },
+      {
+        "@type": "PostalAddress",
+        "name": "Sucursal Guillermo Valle",
+        "streetAddress": "Blvd. Guillermo Valle No. 78, a 100 m de la Clínica 8 IMSS",
+        "addressLocality": "Tlaxcala",
+        "addressRegion": "Tlaxcala",
+        "addressCountry": "MX"
+      }
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        "closes": "01:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+        "closes": "03:00"
+      }
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Pedidos y cotizaciones",
+      "telephone": "+52-246-118-7019",
+      "availableLanguage": "es"
+    },
+    "menu": "https://loscompaitos.nentria.com/menu.html",
+    "hasMenu": {
+      "@type": "Menu",
+      "name": "Carta de Los Compaitos",
+      "url": "https://loscompaitos.nentria.com/menu.html",
+      "hasMenuSection": [
+        {
+          "@type": "MenuSection",
+          "name": "Tacos y antojitos",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Orden de tacos al pastor", "description": "El clásico que siempre se antoja", "offers": { "@type": "Offer", "price": "80", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Gringa al pastor", "description": "Pastor y queso", "offers": { "@type": "Offer", "price": "60", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Taco árabe", "offers": { "@type": "Offer", "price": "28", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Taco oriental", "offers": { "@type": "Offer", "price": "28", "priceCurrency": "MXN" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Quesos fundidos",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Queso fundido al natural", "offers": { "@type": "Offer", "price": "100", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Queso fundido Compaitos", "offers": { "@type": "Offer", "price": "110", "priceCurrency": "MXN" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "Especialidades",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Sarape", "description": "Chuleta, pastor, chorizo, tocino, cebolla, pimiento, queso y jamón", "offers": { "@type": "Offer", "price": "110", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Alambre", "description": "Chuleta, tocino, pimiento, cebolla y queso", "offers": { "@type": "Offer", "price": "100", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Fortachón", "description": "Bistec, chorizo, pastor, tocino y queso", "offers": { "@type": "Offer", "price": "110", "priceCurrency": "MXN" } }
+          ]
+        },
+        {
+          "@type": "MenuSection",
+          "name": "A la parrilla",
+          "hasMenuItem": [
+            { "@type": "MenuItem", "name": "Costilla especial Compaitos", "offers": { "@type": "Offer", "price": "135", "priceCurrency": "MXN" } },
+            { "@type": "MenuItem", "name": "Orden de costilla", "offers": { "@type": "Offer", "price": "80", "priceCurrency": "MXN" } }
+          ]
+        }
+      ]
+    },
+    "makesOffer": {
+      "@type": "Offer",
+      "name": "Taquizas a domicilio",
+      "description": "Servicio de trompo al pastor o árabe para eventos, bodas, XV años y posadas en Tlaxcala y Apizaco. Desde 10 kg (30 personas) hasta 30 kg (100 personas).",
+      "priceCurrency": "MXN",
+      "price": "3000",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": "3000",
+        "maxPrice": "8400",
+        "priceCurrency": "MXN"
+      }
+    }
+  }
+  </script>
+  <link rel="stylesheet" href="inicio.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+  <!-- Contador de visitas -->
+  <script defer data-domain="loscompaitos.nentria.com" src="https://cdn.counter.dev/script.js" data-id="compaitos"></script>
+</head>
+<body class="home">
+<a class="skip" href="#contenido">Ir al contenido</a>
+
+<!-- ===== HEADER ===== -->
+<header class="home-header">
+  <div class="home-wrap home-nav">
+    <a class="home-brand" href="index.html" aria-label="Los Compaitos, inicio">
+      <img class="home-logo" src="assets/logo-compaitos-transparente.png" alt="Los Compaitos" width="537" height="640">
+      <div class="home-brand-text">
+        <span class="home-brand-name">Los Compaitos</span>
+        <span class="home-brand-tag">Taquería · Tlaxcala</span>
+      </div>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#taquizas">Taquizas</a>
+      <a href="menu.html">Menú</a>
+      <a href="#sucursales">Sucursales</a>
+    </nav>
+    <a class="home-cta" href="pedidos.html">Pedir ahora</a>
+  </div>
+</header>
+
 <main id="contenido">
-<section class="hero wrap"><div class="hero-copy"><p class="eyebrow"><span class="little-star">✳</span> BUENOS TACOS. BUENOS COMPAITOS.</p><h1>UN ANTOJO<br>DE <em data-season-word>MIEDO.</em></h1><p class="hero-description">Pastor, queso y ese primer bocado que lo dice todo. Aquí se viene con hambre. Y con los compas.</p><div class="hero-actions"><a class="button" href="menu.html">Se me antojó. Ver menú <span>↗</span></a><a class="text-link" href="#sucursales">Encuentra tu sucursal <span>↓</span></a></div><div class="hero-foot"><span class="mini-seal">HECHO<br>PARA<br>ANTOJAR</span><p>Tres sucursales.<br><strong>Un mismo buen sabor.</strong></p></div></div>
-<div class="hero-art"><div class="orbit"></div><span class="hero-tag">PASTOR DEL BUENO</span><img class="hero-food" src="assets/pastor-hero.webp" alt="Composición publicitaria de tacos al pastor con piña, cilantro y salsa en movimiento" width="1536" height="1024" fetchpriority="high"><div class="price-stamp"><span>ORDEN DE PASTOR</span><strong>$80</strong><span>ASÍ SÍ SE ANTOJA</span></div><span class="art-caption">Imagen publicitaria ilustrativa</span><svg class="bat bat-one seasonal" viewBox="0 0 100 45" aria-hidden="true"><path d="M0 2 25 17 36 9 43 18 46 9 50 16 54 9 57 18 64 9 75 17 100 2 88 28 72 26 60 36 50 43 40 36 28 26 12 28Z"/></svg><svg class="bat bat-two seasonal" viewBox="0 0 100 45" aria-hidden="true"><path d="M0 2 25 17 36 9 43 18 46 9 50 16 54 9 57 18 64 9 75 17 100 2 88 28 72 26 60 36 50 43 40 36 28 26 12 28Z"/></svg></div></section>
-<div class="marquee" aria-label="Pastor, árabes, gringas, especialidades, taquizas"><div>PASTOR <span>✳</span> ÁRABES <span>✳</span> GRINGAS <span>✳</span> ESPECIALIDADES <span>✳</span> TAQUIZAS <span>✳</span> PASTOR <span>✳</span> ÁRABES <span>✳</span> GRINGAS <span>✳</span></div></div>
-<section class="favorites wrap section"><div class="section-heading"><div><p class="eyebrow">PARA EMPEZAR CON TODO</p><h2>Elige tu <em>antojo.</em></h2></div><a class="text-link" href="menu.html">Todo el menú <span>↗</span></a></div><div class="favorite-grid">
-<a class="food-card feature-card" href="menu.html#tacos"><div class="food-photo"><img src="assets/pastor-hero.webp" alt="Tacos al pastor, imagen ilustrativa" loading="lazy" width="1536" height="1024"><span class="photo-label">EL CLÁSICO</span></div><div class="food-card-body"><div><h3>Pastor del bueno</h3><p>Una orden para darle gusto al antojo.</p></div><span class="card-price">$80 <small>↗</small></span></div></a>
-<a class="food-card typographic-card cheese" href="menu.html#quesos"><span class="eyebrow">BIEN FUNDIDO. BIEN RICO.</span><h3>Que no<br>falte <em>queso.</em></h3><div class="cheese-line" aria-hidden="true">~~~~~~~~</div><div class="card-bottom"><span>Quesos fundidos<br><strong>Desde $100</strong></span><span class="round-arrow">↗</span></div></a>
-<a class="food-card typographic-card special" href="menu.html#especialidades"><span class="eyebrow">PARA EL HAMBRE EN SERIO</span><h3>Con todo.<br>Y con <em>sabor.</em></h3><p>Sarape, Alambre, Fortachón<br>y más especialidades.</p><div class="card-bottom"><span>Especialidades<br><strong>Desde $100</strong></span><span class="round-arrow">↗</span></div></a></div></section>
-<section class="taquiza-section" id="taquizas"><div class="wrap taquiza-grid"><div class="taquiza-art"><span class="eyebrow">TÚ PONES LA FIESTA</span><div class="party-type">NOSOTROS<br><em>LOS TACOS.</em></div><span class="party-star" aria-hidden="true">✳</span><p>TAQUIZAS A DOMICILIO · LOS COMPAITOS</p></div><div class="taquiza-copy"><p class="eyebrow">QUE NADIE SE QUEDE CON EL ANTOJO</p><h2>Tu evento.<br>Más <em>sabroso.</em></h2><p>Cumpleaños, reuniones o porque sí. Cuéntanos qué estás preparando y cotizamos tu taquiza por WhatsApp.</p><form id="event-form"><div class="form-grid"><label>Fecha del evento<input name="date" type="date" required></label><label>¿Cuántas personas?<input name="guests" type="number" min="1" max="10000" placeholder="Ej. 30" required></label></div><label>¿Dónde será?<input name="location" placeholder="Colonia y municipio" maxlength="180" required></label><button class="button" type="submit">Cotizar mi taquiza <span>↗</span></button><small>La taquería confirma cobertura, disponibilidad y precio.</small></form></div></div></section>
-<section class="wrap section" id="sucursales"><div class="section-heading"><div><p class="eyebrow">SIEMPRE HAY UN COMPA CERCA</p><h2>Nos vemos <em>aquí.</em></h2></div><p class="section-note">Tres puntos para encontrarnos.<br>Elige el que te quede más cerca.</p></div><div id="branch-cards" class="branch-grid"></div></section>
-<section class="last-call wrap"><span class="eyebrow">EL ANTOJO NO SE QUITA MIRANDO</span><h2>¿Y si vamos<br>por unos <em>tacos?</em></h2><a class="button" href="pedidos.html">Sí. Armar mi pedido <span>↗</span></a></section>
-</main><footer class="wrap footer"><a class="brand" href="index.html"><img class="brand-logo" src="assets/logo-los-compaitos.png" alt="Taquería Los Compaitos" width="910" height="840"></a><p>El buen sabor se comparte.<br><small>Demo · Precios y datos tomados del menú proporcionado.</small></p><a href="qr.html">Menú para compartir ↗</a></footer>
-<aside class="theme-demo" aria-label="Vista previa de temporadas"><label for="theme-select">Explora el look <span>↔</span></label><select id="theme-select"><option value="halloween">Halloween</option><option value="original">Original</option><option value="navidad">Navidad</option></select><span class="theme-hint">Vista previa en este dispositivo</span></aside><div class="toast" role="status" id="toast"></div>
-</body></html>
+
+  <!-- ===== HERO — full screen ===== -->
+  <section class="home-hero">
+    <div class="home-holiday-lights" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-hero-bg" src="assets/pastorportada-compaitos.webp" alt="" width="1440" height="960" fetchpriority="high" aria-hidden="true">
+    <div class="home-hero-overlay"></div>
+    <div class="home-wrap home-hero-content">
+      <span class="home-label">Taquería en Tlaxcala</span>
+      <h1>Pastor<br>del bueno.</h1>
+      <p>Tacos al pastor, árabes y especialidades de trompo.<br>Tres sucursales para ti.</p>
+      <div class="home-hero-actions">
+        <a class="home-btn" href="menu.html">Ver el menú</a>
+        <a class="home-btn home-btn--ghost" href="#taquizas">Cotizar taquiza</a>
+      </div>
+    </div>
+    <img class="home-nochebuena" src="assets/nochebuena.svg" width="360" height="360" alt="" aria-hidden="true">
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <div class="home-marquee" aria-hidden="true">
+    <div class="home-marquee-track">
+      <span>Pastor ✦ Árabes ✦ Gringas ✦ Especialidades ✦ Quesos fundidos ✦ A la parrilla ✦ </span>
+      <span>Pastor ✦ Árabes ✦ Gringas ✦ Especialidades ✦ Quesos fundidos ✦ A la parrilla ✦ </span>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT strip ===== -->
+  <section class="home-about">
+    <div class="home-xmas-lights home-xmas-lights--bottom" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-deco home-deco--1" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--2" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--10" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <figure class="home-about-photo">
+      <img src="assets/trompo-menu-compaitos.webp" alt="Taquero cortando pastor del trompo" width="1440" height="960" loading="lazy">
+    </figure>
+    <div class="home-wrap home-about-grid">
+      <div class="home-about-copy" data-home-reveal>
+        <span class="home-label">Nuestra taquería</span>
+        <h2>Del trompo<br>a tu taco.</h2>
+        <p>Pastor cortado al momento, tortillas calientes y salsas de la casa. Así llevamos <strong>15 años sirviendo tacos en Tlaxcala</strong>.</p>
+        <a class="home-link" href="menu.html">Ver la carta completa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAVORITES ===== -->
+  <section class="home-favorites">
+    <div class="home-xmas-lights" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-deco home-deco--3" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--4" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <div class="home-wrap">
+      <div class="home-section-head" data-home-reveal>
+        <span class="home-label">La carta</span>
+        <h2>Elige tu antojo</h2>
+      </div>
+      <div class="home-gallery">
+        <a class="home-card" href="menu.html#tacos" data-home-reveal>
+          <div class="home-card-img">
+            <img src="assets/tacos-menu-compaitos.webp" alt="Tacos al pastor con piña" width="1050" height="700" loading="lazy">
+          </div>
+          <div class="home-card-body">
+            <h3>Tacos y gringas</h3>
+            <p>Pastor, árabes y orientales</p>
+            <strong>Desde $28</strong>
+          </div>
+        </a>
+        <a class="home-card" href="menu.html#quesos" data-home-reveal>
+          <div class="home-card-img">
+            <img src="assets/queso-menu-compaitos.webp" alt="Queso fundido" width="1050" height="700" loading="lazy">
+          </div>
+          <div class="home-card-body">
+            <h3>Quesos fundidos</h3>
+            <p>Natural, Compaitos y más</p>
+            <strong>Desde $100</strong>
+          </div>
+        </a>
+        <a class="home-card" href="menu.html#especialidades" data-home-reveal>
+          <div class="home-card-img">
+            <img src="assets/costilla-menu-compaitos.webp" alt="Parrilla con verduras" width="1050" height="700" loading="lazy">
+          </div>
+          <div class="home-card-body">
+            <h3>Especialidades</h3>
+            <p>Sarape, Alambre, Fortachón</p>
+            <strong>Desde $100</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FULL-WIDTH PHOTO BREAK ===== -->
+  <section class="home-photo-break">
+    <img src="assets/parrilla-compaitos.webp" alt="Parrilla Los Compaitos" width="1440" height="600" loading="lazy">
+    <div class="home-photo-break-text">
+      <h2>¡Para un buen sabor!</h2>
+    </div>
+  </section>
+
+  <!-- ===== POSADAS / NAVIDAD ===== -->
+  <section class="home-posadas">
+    <div class="home-wrap home-posadas-grid" data-home-reveal>
+      <div>
+        <span class="home-label home-label--light">Temporada</span>
+        <h2>Pastor para<br>la posada</h2>
+        <p>Armamos el trompo en tu evento en Tlaxcala y Apizaco. Bodas, XV años, posadas y fiestas.</p>
+        <a class="home-btn" href="#paquetes">Ver paquetes</a>
+      </div>
+      <img src="assets/santa-taquero-compaitos.webp" alt="Santa taquero con mandil verde sirviendo un taco junto al trompo al pastor" width="760" height="685" loading="lazy">
+    </div>
+  </section>
+
+  <!-- ===== TAQUIZAS / PACKAGES ===== -->
+  <section id="taquizas" class="home-packages">
+    <div class="home-xmas-lights" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-deco home-deco--5" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--6" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--11" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <div class="home-wrap">
+      <div class="home-section-head" data-home-reveal>
+        <span class="home-label">Eventos</span>
+        <h2 id="paquetes">Paquetes de taquiza</h2>
+        <p>Elige trompo al pastor o árabe. Con el paquete de 20 kg puedes pedir dos trompos de 10 kg, uno de cada sabor.</p>
+      </div>
+      <div class="home-pkg-grid">
+        <div data-home-reveal>
+          <table class="pkg-table">
+            <caption>Precios en pesos mexicanos</caption>
+            <thead><tr><th scope="col">Carne</th><th scope="col">Personas</th><th scope="col">Precio</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">10 kg</th><td>30</td><td>$3,000</td></tr>
+              <tr><th scope="row">13 kg</th><td>40</td><td>$3,900</td></tr>
+              <tr><th scope="row">15 kg</th><td>50</td><td>$4,350</td></tr>
+              <tr><th scope="row">18 kg</th><td>60</td><td>$5,200</td></tr>
+              <tr class="pkg-pop"><th scope="row">20 kg</th><td>70</td><td>$5,800</td></tr>
+              <tr><th scope="row">25 kg</th><td>80</td><td>$7,000</td></tr>
+              <tr><th scope="row">30 kg</th><td>100</td><td>$8,400</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="home-includes" data-home-reveal>
+          <img class="home-event-photo" src="assets/taquiza-menu-compaitos.webp" alt="Ilustración de una mesa de taquiza con tortillas y salsas" width="1050" height="700" loading="lazy">
+          <h3>Qué incluye</h3>
+          <ul>
+            <li>Trompo al pastor o árabe, servido al momento</li>
+            <li>Tortillas de harina y maíz ilimitadas</li>
+            <li>Salsas verde, roja y de chipotle</li>
+            <li>Cebolla, cilantro, piña y limones</li>
+            <li>Cebollitas o nopales y charolas para servir</li>
+          </ul>
+          <p class="home-note">La duración del servicio depende del paquete. Aparta con <strong>$500 MXN</strong>.</p>
+          <a class="home-btn" href="#cotizar">Cotizar mi evento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / COTIZAR ===== -->
+  <section id="cotizar" class="home-contact">
+    <div class="home-xmas-lights" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-deco home-deco--7" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <div class="home-wrap home-contact-grid" data-home-reveal>
+      <div>
+        <span class="home-label">Cotización</span>
+        <h2>Cotiza<br>tu evento</h2>
+        <p>Llevamos el trompo a bodas, XV años y eventos de empresa en Tlaxcala y Apizaco.</p>
+        <a class="home-wa" href="https://wa.me/522461187019">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          +52 246 118 7019
+        </a>
+      </div>
+      <form id="event-form">
+        <div class="form-grid">
+          <label>Fecha del evento<input name="date" type="date" required></label>
+          <label>Número de personas<input name="guests" type="number" min="1" max="10000" placeholder="Ej. 70" required></label>
+        </div>
+        <label>Colonia y municipio<input name="location" maxlength="180" required></label>
+        <button class="home-btn" type="submit">Cotizar por WhatsApp</button>
+        <small>La taquería confirma cobertura, disponibilidad y precio.</small>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== BRANCHES ===== -->
+  <section id="sucursales" class="home-branches">
+    <div class="home-xmas-lights" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <img class="home-deco home-deco--8" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--9" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <img class="home-deco home-deco--12" src="assets/nochebuena.svg" alt="" aria-hidden="true">
+    <div class="home-wrap">
+      <div class="home-section-head" data-home-reveal>
+        <span class="home-label">Encuéntranos</span>
+        <h2>Nuestras sucursales</h2>
+        <p>Encuentra tu taquería en Tlaxcala.</p>
+      </div>
+      <div id="branch-cards" class="branch-grid"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="home-footer">
+  <div class="home-wrap home-footer-inner">
+    <a class="home-footer-brand" href="index.html">
+      <img src="assets/logo-compaitos-transparente.png" alt="Los Compaitos" width="537" height="640">
+      <span>Los Compaitos</span>
+    </a>
+    <div class="home-footer-links">
+      <a href="menu.html">Menú</a>
+      <a href="#taquizas">Taquizas</a>
+      <a href="qr.html">Compartir</a>
+    </div>
+    <p>Taquería en Tlaxcala · ¡Para un buen sabor!</p>
+  </div>
+</footer>
+<div class="toast" role="status" id="toast"></div>
+</body>
+</html>

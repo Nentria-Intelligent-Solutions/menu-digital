@@ -1,0 +1,16 @@
+{
+  "name": "Los Compaitos — Taquería en Tlaxcala",
+  "short_name": "Los Compaitos",
+  "description": "Tacos al pastor, árabes y taquizas a domicilio en Tlaxcala y Apizaco.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#12382a",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "categories": ["food"]
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Nochebuena navideña">
+<defs><radialGradient id="petal"><stop stop-color="#fb6554"/><stop offset="1" stop-color="#bd1f30"/></radialGradient><radialGradient id="leaf"><stop stop-color="#66a565"/><stop offset="1" stop-color="#245340"/></radialGradient></defs>
+<g stroke="#174a35" stroke-width="3" stroke-linejoin="round"><path fill="url(#leaf)" d="M177 186Q98 128 48 176q38 66 128 33z"/><path fill="url(#leaf)" d="M184 194q78-75 132-39-28 73-123 65z"/><path fill="url(#leaf)" d="M175 201Q119 283 64 250q21-69 107-76z"/><path fill="url(#leaf)" d="M193 204q51 86 111 54-16-74-98-79z"/><path fill="url(#leaf)" d="M177 192Q117 162 110 98q57-21 82 78z"/><path fill="url(#leaf)" d="M191 188q4-87 62-102 31 52-47 112z"/></g>
+<g fill="url(#petal)" stroke="#f7b8a0" stroke-width="3"><path d="M179 182Q103 158 100 82q57-3 83 100z"/><path d="M181 183Q140 113 171 46q48 28 26 141z"/><path d="M188 184q18-84 87-94 14 57-70 110z"/><path d="M189 188q82-26 116 39-48 33-113-22z"/><path d="M181 191q58 71 21 137-53-24-37-119z"/><path d="M174 190Q99 238 45 194q32-51 127-25z"/></g>
+<g fill="#e8bf53" stroke="#96672a" stroke-width="3"><circle cx="180" cy="183" r="14"/><circle cx="155" cy="174" r="8"/><circle cx="205" cy="171" r="8"/><circle cx="193" cy="201" r="8"/><circle cx="166" cy="205" r="8"/></g>
+<g stroke="#f9df9a" stroke-width="3" opacity=".9"><path d="M180 186 129 99M182 186l-8-126M183 186l74-84M186 188l102 27M183 193l11 120M177 187 60 192M174 188l-55 62M191 183l53-82"/></g>
+</svg>
